@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <!-- Icon -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>주린이</title>
+</head>
+<body> 
+    <div id="root">
+        <div ref="background" class="background">
+          <div class="mobile_head">
+        <div><i class="fas fa-coins"></i> 주린이</div>
+        <div><a v-on:click="togglemenu"><i class="fas fa-bars"></i></a></div>
+
+    </div>
+    <div ref="navigation" class="navigation">
+        <div class="none"><a v-on:click="togglemenu"><i class="far fa-window-close"></i></a></div>
+        <ul>
+            <li>주식</li>
+            <li>뉴스</li>
+            <li>커뮤니티</li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="main">
+        <nav ref="color">
+            <!-- 사이드 탭 부분 -->
+            <ul class="tab">
+                <li class="tab1"><a v-on:click="sideChangeStock">주<br>식</a></li>
+                <li class="tab2"><a v-on:click="sideChangeNews">뉴<br>스</a></li>
+                <li class="tab3"><a v-on:click="sideChangeCommu">커<br>뮤<br>니<br>티</a></li>
+            </ul>
+
+            <!-- 사이드 헤더 -->
+            <div class="head">
+                <i class="fas fa-coins"></i> 주린이
+            </div>
+
+            <!-- 사이드 메뉴 -->
+            <ul>
+                <li v-for='i in value'>
+                    {{i}}
+                </li>
+            </ul>
+        </nav>
+        <section>
+
+        </section>
+    </div>
+    <footer>
+        footer
+    </footer>
+    </div>
+</div>
+    <script src='index.js'>
+    </script>
+
+</body>
+</html>
