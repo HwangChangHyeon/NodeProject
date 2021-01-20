@@ -1,71 +1,134 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 부트스트랩 -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> <!-- 차트 링크 --> <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <link rel="stylesheet" type="text/css" href="index.css" />
     <!-- Icon -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
     <!-- 폰트 -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+    <script src="jquery.counterup.min.js"></script>
 
-    <!-- Vue.js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <title>주린이</title>
 </head>
-<body> 
-    <div id="root">
-        <div ref="background" class="background">
-          <div class="mobile_head">
-        <div><i class="fas fa-coins"></i> 주린이</div>
-        <div><a v-on:click="togglemenu"><i class="fas fa-bars"></i></a></div>
 
-    </div>
-    <div ref="navigation" class="navigation">
-        <div class="none"><a v-on:click="togglemenu"><i class="far fa-window-close"></i></a></div>
-        <ul>
-            <li>주식</li>
-            <li>뉴스</li>
-            <li>커뮤니티</li>
-            <li></li>
-        </ul>
-    </div>
-    <div class="main">
-        <nav ref="color">
-            <!-- 사이드 탭 부분 -->
-            <ul class="tab">
-                <li class="tab1"><a v-on:click="sideChangeStock">주<br>식</a></li>
-                <li class="tab2"><a v-on:click="sideChangeNews">뉴<br>스</a></li>
-                <li class="tab3"><a v-on:click="sideChangeCommu">커<br>뮤<br>니<br>티</a></li>
-            </ul>
-
-            <!-- 사이드 헤더 -->
-            <div class="head">
-                <i class="fas fa-coins"></i> 주린이
+<body>
+    <div ref="background" id="root" class="background">
+            <div class="mobile_head">
+                <div><a href="index.html"><i class="fas fa-coins"></i> Market Weather</a></div>
+                <div><a v-on:click="togglemenu"><i class="fas fa-bars"></i></a></div>
             </div>
+            <div ref="navigation" class="navigation">
+                <div class="none"><a v-on:click="togglemenu"><i class="fas fa-times"></i></a></div>
+                <ul>
+                    <li>주식</li>
+                    <li>뉴스</li>
+                    <li>커뮤니티</li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="main" >
+                <nav ref="color">
+                    <!-- 사이드 탭 부분 -->
+                    <ul class="tab">
+                        <li ref="xbutton" class="tab4">
+                            <button ref="xxbutton" v-on:click="sideChangeClose"><i class="fas fa-times"></i>
+                            </button>
+                        </li>
+                        <li class="tab1">
+                            <button v-on:click="sideChangeStock">주<br>식<br><i class="fas fa-chart-line"></i>
+                            </button>
+                        </li>
+                        <li class="tab2">
+                            <button v-on:click="sideChangeNews">뉴<br>스<br>
+                                <i class="far fa-newspaper"></i>
+                            </button>
+                        </li>
+                        <li class="tab3">
+                            <button v-on:click="sideChangeCommu">커<br>뮤<br>니<br>티<br>
+                                <i class="fas fa-chalkboard"></i>
+                            </button>
+                        </li>
+                    </ul>
 
-            <!-- 사이드 메뉴 -->
-            <ul>
-                <li v-for='i in value'>
-                    {{i}}
-                </li>
-            </ul>
-        </nav>
-        <section>
+                    <!-- 사이드 헤더 -->
+                    <div class="head">
+                        <a href="index.html"><i class="fas fa-coins"></i> Market Weather</a>
+                    </div>
 
-        </section>
+                    <!-- 사이드 메뉴 -->
+                    <ul>
+                        <li v-for='i in value'>
+                            {{i}}
+                        </li>
+                    </ul>
+                </nav>
+                <section ref="bg">
+                    <div class="notuse"></div>
+                    <div ref="bg2" class="section_main">
+                        <div class="section_header">
+                            <div><a href="index.html"><i class="fas fa-coins"></i> Market Weather</a></div>
+                            <div><a v-on:click="togglemenu"><i class="fas fa-bars"></i></a></div>
+                        </div>
+                        <div class="section_btn">
+                            <button class="sb_btn1"><i class="fas fa-chart-line"></i>주식</button>
+                            <button class="sb_btn2"><i class="far fa-newspaper"></i>뉴스</button>
+                            <button class="sb_btn3"><i class="fas fa-chalkboard"></i>커뮤니티</button>
+                        </div>
+                        <div class="section_tab">
+                            <button class="st_btn1">주식현황</button>
+                            <button class="st_btn2">뉴스특보</button>
+                        </div>
+                        <div class="section_table_header">
+                            <div> <b>AI 주린이</b>가 뽑은 오늘의 추천주</div>
+                        </div>
+                        <div class="section_table">
+                            <div class="section_table_1">
+                                <div class="st_brand">삼성전자</div>
+                                <div class="st_money">예상주가</div>
+                                <div class="st_number"><div class="number">98000</div><div>원</div></div>
+                                <div class="st_btn"><button v-on:click="st_info">관련주 정보</button></div>
+                            </div>
+                            <div class="section_table_2">
+                                <ul ref="table">
+                                    <li> 현재 주가 - 88,000원 </li>
+                                    <li> 시가 총액 - 5,193,711억원 </li>
+                                    <li> 주요 사업 - 반도체, IM </li>
+                                    <li> 기업 전망 - 상 </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="section_graphheader">
+                            <button id="sgh_1" onclick='samsung()' class="sgh_1">삼성</button>
+                            <button id="sgh_2" onclick='LG()' class="sgh_2">LG</button>
+                            <button id="sgh_3" onclick='Hyundai()' class="sgh_3">현대</button>
+                        </div>
+                        <div class="section_graph">
+                            <div class="container" style="width:100%;"> <canvas id="myChart"></canvas> </div>
+                        </div>
+                    </div>
+                    <div class="notuse"></div>
+                </section>
+            </div>
+            <footer>
+                footer
+            </footer>
     </div>
-    <footer>
-        footer
-    </footer>
-    </div>
-</div>
-    <script src='index.js'>
-    </script>
-
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2" defer></script>
+    <script src='index.js' defer></script>
 </body>
 </html>

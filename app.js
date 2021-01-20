@@ -24,6 +24,12 @@ app.get('/index.css',(req, res) => { // get요청을 /로 받았을 때 응답�
 })
 
 
+app.get('/index.js',(req, res) => { // get요청을 /로 받았을 때 응답을 아래와 같이 하기
+    res.sendFile(path.join(__dirname,'index.js')); // 현재 디렉터리에 index.html 추가하기
+})
+
+
+
 
 app.use((err, req, res, next) => {  // err는 매개변수 4개 다써줘야함.(꼭 next까지)
     res.status(200).send('에러났지롱. 근데 안알려주지롱.'); // 200으로 정상적인 코드로 보낼 수 있음
